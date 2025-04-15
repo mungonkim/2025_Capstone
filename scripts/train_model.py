@@ -11,7 +11,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import classification_report
 from konlpy.tag import Okt
 
-# 1. 데이터 로딩
+#  1. 데이터 로딩
 urllib.request.urlretrieve("https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt", "ratings_train.txt")
 urllib.request.urlretrieve("https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt", "ratings_test.txt")
 
@@ -103,8 +103,8 @@ print("\n 테스트 성능:\n")
 print(classification_report(y_test, y_pred_labels))
 
 #  9. 모델 저장
-model.save("sentiment_model.h5")
-with open("tokenizer_config.pkl", "wb") as f:
+model.save("models/sentiment_model.h5")
+with open("models/tokenizer_config.pkl", "wb") as f:
     pickle.dump({"tokenizer": tokenizer, "max_len": max_len}, f)
 
 print("\n형태소 분석 기반 전처리 모델 저장 완료!")
