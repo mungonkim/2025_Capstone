@@ -103,8 +103,8 @@ print("\n 테스트 성능:\n")
 print(classification_report(y_test, y_pred_labels))
 
 #  9. 모델 저장
-model.save("sentiment_model.h5")
-with open("tokenizer_config.pkl", "wb") as f:
+model.save("models/sentiment_model.h5")
+with open("models/tokenizer_config.pkl", "wb") as f:
     pickle.dump({"tokenizer": tokenizer, "max_len": max_len}, f)
 
 print("\n형태소 분석 기반 전처리 모델 저장 완료!")
