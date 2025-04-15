@@ -146,9 +146,9 @@ driver.quit()
 # CSV로 저장
 df_info = pd.DataFrame(info_list)
 df_info.to_csv("로맨스_본문정보.csv", index=False, encoding="utf-8-sig")
-print("📘 전체 본문 CSV 저장 완료")
+print("전체 본문 CSV 저장 완료")
 
 # 댓글 dict → DataFrame (column = 제목)
 df_comment = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in comment_dict.items()]))
 df_comment.to_csv("로맨스_댓글.csv", index=False, encoding="utf-8-sig")
-print("💬 전체 댓글 CSV 저장 완료")
+print("전체 댓글 CSV 저장 완료")
