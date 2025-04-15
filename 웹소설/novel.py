@@ -20,7 +20,7 @@ info_list = []
 comment_dict = {}
 
 # 텍스트 파일에서 list URL 읽기  
-with open("현판.txt", "r", encoding="utf-8") as f:  #웹툰 url이 들어 있는 txt 파일만 변경하면 됨 
+with open("로맨스.txt", "r", encoding="utf-8") as f:  #웹툰 url이 들어 있는 txt 파일만 변경하면 됨 
     list_urls = [line.strip() for line in f if line.strip()]
 
 for list_url in list_urls:
@@ -97,7 +97,7 @@ for list_url in list_urls:
             total_episode = int(re.search(r'\d+', total_episode_tag.text).group()) if total_episode_tag else 0
 
             mid = total_episode // 2
-            volume_nos = list(range(1, 4)) + list(range(mid - 1, mid + 2)) + list(range(total_episode - 2, total_episode + 1))
+            volume_nos = list(range(1, 3)) + list(range(mid, mid + 2)) + list(range(total_episode - 1, total_episode + 1))
             episode_texts = {}
 
             for vol in volume_nos:
@@ -117,9 +117,10 @@ for list_url in list_urls:
             episode_texts = {}
 
         # 초/중/후 3화
-        first_3 = "\n\n".join([episode_texts.get(i, "") for i in range(1, 4)])
-        middle_3 = "\n\n".join([episode_texts.get(i, "") for i in range((total_episode // 2) - 1, (total_episode // 2) + 2)])
-        last_3 = "\n\n".join([episode_texts.get(i, "") for i in range(total_episode - 2, total_episode + 1)])
+        first_2 = "\n\n".join([episode_texts.get(i, "") for i in range(1, 3)])
+        middle_2 = "\n\n".join([episode_texts.get(i, "") for i in range(mid, mid + 2)])
+        last_2 = "\n\n".join([episode_texts.get(i, "") for i in range(total_episode - 1, total_episode + 1)])
+
 
         # 정보 누적
         info_list.append({
@@ -128,9 +129,9 @@ for list_url in list_urls:
             "별점": score,
             "다운로드 수": download,
             "관심 수": concern,
-            "초반 2화": first_3,
-            "중간 2화": middle_3,
-            "마지막 2화": last_3
+            "초반 2화": first_2,
+            "중간 2화": middle_2,
+            "마지막 2화": last_2
         })
 
         print(f"처리 완료: {title}")
@@ -144,10 +145,10 @@ driver.quit()
 
 # CSV로 저장
 df_info = pd.DataFrame(info_list)
-df_info.to_csv("현판_본문정보.csv", index=False, encoding="utf-8-sig")
-print("📘 전체 본문 CSV 저장 완료")
+df_info.to_csv("로맨스_본문정보.csv", index=False, encoding="utf-8-sig")
+print("전체 본문 CSV 저장 완료")
 
 # 댓글 dict → DataFrame (column = 제목)
 df_comment = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in comment_dict.items()]))
-df_comment.to_csv("현판_댓글.csv", index=False, encoding="utf-8-sig")
-print("💬 전체 댓글 CSV 저장 완료")
+df_comment.to_csv("로맨스_댓글.csv", index=False, encoding="utf-8-sig")
+print("전체 댓글 CSV 저장 완료")
