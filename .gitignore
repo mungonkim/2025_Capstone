@@ -9,7 +9,6 @@ __pycache__/
 
 # 데이터 파일
 *.csv
-*.txt
 
 # 기타
 .DS_Store

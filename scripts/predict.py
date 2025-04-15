@@ -6,12 +6,12 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from text_preprocessor import tokenize_and_remove_stopwords, clean_text
 
 # 1. 모델 및 토크나이저 로드
-with open("tokenizer_config.pkl", "rb") as f:
+with open("models/tokenizer_config.pkl", "rb") as f:
     config = pickle.load(f)
 tokenizer = config["tokenizer"]
 max_len = config["max_len"]
 
-model = load_model("sentiment_model.h5")
+model = load_model("models/sentiment_model.h5")
 
 # 2. 예측 함수 정의
 def predict_multi_column_csv(csv_path, output_path="predicted_result.csv"):

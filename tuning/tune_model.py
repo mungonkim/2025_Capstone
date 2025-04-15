@@ -21,7 +21,7 @@ X = tokenize_and_remove_stopwords(train_data['document'])
 y = train_data['label']
 
 # 3. Tokenizer 로드
-with open("tokenizer_config.pkl", "rb") as f:
+with open("models/tokenizer_config.pkl", "rb") as f:
     config = pickle.load(f)
 tokenizer = config["tokenizer"]
 max_len = config["max_len"]
@@ -49,5 +49,5 @@ early_stopping = EarlyStopping(monitor="val_loss", patience=2, restore_best_weig
 model.fit(X_pad, y, validation_split=0.2, epochs=10, batch_size=32, callbacks=[early_stopping])
 
 # 7. 저장
-model.save("sentiment_model.h5")
+model.save("models/sentiment_model.h5")
 print("\n 튜닝 완료! 모델 재저장됨.")
