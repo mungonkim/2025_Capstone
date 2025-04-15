@@ -1,12 +1,11 @@
 # text_preprocessor.py
-
 import re
 import numpy as np
 import pandas as pd
 from konlpy.tag import Okt
 from tqdm import tqdm
 
-# 형태소 분석기
+# 형태소 분석기 
 okt = Okt()
 
 # 최소 필수 불용어만 유지
